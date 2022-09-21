@@ -6,3 +6,5 @@ chrome_driver_path = r"localhost\Ubuntu\home\aalsaedi265\development\work\chrome
 driver = webdriver.Chrome(executable_path=chrome_driver_path)
 driver.get("https://www.amazon.com")
 driver.quit()
+
+print('the world')
