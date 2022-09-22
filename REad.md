@@ -16,3 +16,7 @@ Make sure it is present in the workplace as in there is file called chromdirver 
 
 
 NOTE: if you read find_element_by_X(self.Y), it has been changed to find_element("x",self.Y)
+
+
+Testing can be done by building new methods or assert staments in main
+In addition if the the locator text element changes is can be changed in page search class.
