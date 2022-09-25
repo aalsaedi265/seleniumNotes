@@ -11,7 +11,7 @@ class BasePageElement(object):
         WebDriverWait(driver,100).until(
             #looking at the HTLM of a page, under name, find value given to locator
             lambda driver:driver.find_element("name",self.locator)
-            )
+            )# find the inpute box on the page
         driver.find_element("name",self.locator).clear()
         driver.find_element("name",self.locator).send_keys(value)
         
@@ -20,5 +20,5 @@ class BasePageElement(object):
         WebDriverWait(driver,100).until(
             lambda driver: driver.find_element("name",self.locator) #wait to generate
             )
-        element = driver.find_element("name",self.locator)
+        element = driver.find_element("name",self.locator)#id,class,tag, etc
         return element.get_attribute("value") #present it
