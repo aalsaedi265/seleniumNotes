@@ -11,3 +11,6 @@ class SearchResultsPageLocators(object):
     #you type something go to new page
     #locator code like class above placed here
     pass
+
+class SourceCodePageLocators_In_DowloadDropdown(object):
+    pass

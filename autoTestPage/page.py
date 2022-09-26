@@ -2,6 +2,7 @@
 from locator import *
 from element import BasePageElement
 from selenium.webdriver.common.action_chains import ActionChains
+import time
 
 class SearchTextElement(BasePageElement):
     #html name search box where search string is entered
@@ -31,6 +32,7 @@ class MainPage(BasePage):
         element = self.driver.find_element( *MainPageLocators.LAUNCH_SHELL_BUTTON)
         element.click()
         
+#https://www.tutorialspoint.com/how-can-i-perform-mouse-hover-action-in-selenium-python?ranMID=49144&ranEAID=a1LgFw09t88&ranSITEID=a1LgFw09t88-Sd8o.w9eFDO7w_gTzq.zdQ
     def hover_downloads(self):
         hover = ActionChains(self.driver)
         downloads = self.driver.find_element("link text","Downloads")
@@ -39,7 +41,16 @@ class MainPage(BasePage):
         drop_downMenu_item_of_interest = self.driver.find_element("link text","Source code")
         hover.move_to_element(drop_downMenu_item_of_interest).click().perform() 
         
-
+    def from_mainPage_to_gitHub(self):
+        self.hover_downloads()
+        # time.sleep(3)
+        sourcePage=self.driver.find_element("partial link text","Latest Python 3 Release")
+        ActionChains(self.driver).move_to_element(sourcePage).click().perform()
+        
+        gitHubPage=self.driver.find_element("partial link text","PEP 623")
+        ActionChains(self.driver).move_to_element(gitHubPage).click().perform()
+        time.sleep(3)
+        
 class SearchResultPage(BasePage):
     
     def is_results_found(self):
@@ -50,3 +61,9 @@ class DownloadsPage(BasePage):
         x= f"the title of the page: {self.driver.title}"
         print(x)
         return x
+    
+class Latest_In_Python3(BasePage):
+    def is_results_found(self):
+        x= f"the title of the page: {self.driver.title}"
+        print(x.upper())
+        return "No results found." not in self.driver.page_source

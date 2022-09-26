@@ -1,7 +1,7 @@
 
 
 from selenium.webdriver.support.ui import WebDriverWait
-
+#used when placing str/in an inpute to access another area of the page
 class BasePageElement(object):
     #locator defined in page.py
     
