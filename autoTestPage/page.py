@@ -1,8 +1,10 @@
 
+from turtle import title
 from locator import *
 from element import BasePageElement
 from selenium.webdriver.common.action_chains import ActionChains
 import time
+from selenium.webdriver.common.by import By
 
 class SearchTextElement(BasePageElement):
     #html name search box where search string is entered
@@ -28,6 +30,14 @@ class MainPage(BasePage):
         element.click()
         #go to locater,make button
     
+    #another way to click
+    def goTo_pypl(self):
+        #https://selenium-python.readthedocs.io/locating-elements.html
+        pyplTab= self.driver.find_element(By.XPATH,'//*[@id="top"]/nav/ul/li[4]/a')
+        pyplTab.click()
+        time.sleep(2)
+        
+    
     def click_ineractive_shell(self):
         element = self.driver.find_element( *MainPageLocators.LAUNCH_SHELL_BUTTON)
         element.click()
@@ -50,6 +60,18 @@ class MainPage(BasePage):
         gitHubPage=self.driver.find_element("partial link text","PEP 623")
         ActionChains(self.driver).move_to_element(gitHubPage).click().perform()
         time.sleep(3)
+        
+        
+        
+        
+class noHover_direct_page_switch(BasePage):
+    def does_pypl_exist(self):
+        absentPage = "No results found." not in self.driver.page_source
+        title= f"the title of the page: {self.driver.title}"
+        print(title, absentPage) #if true everyting worked out great
+        return absentPage 
+
+    
         
 class SearchResultPage(BasePage):
     
